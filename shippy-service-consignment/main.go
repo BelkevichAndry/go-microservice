@@ -3,11 +3,11 @@ package main
 import (
 	"context"
 	"log"
-	"net"
 	"sync"
 
 	pb "github.com/BelkevichAndry/go-microservice/shippy-service-consignment/proto/consignment"
-	"google.golang.org/grpc"
+	"github.com/micro/go-micro/v2"
+
 )
 
 const (
@@ -44,14 +44,14 @@ func (repo *Repository) GetAll() []*pb.Consignment {
 // we defined in our protobuf definition. You can check the interface
 // in the generated code itself for the exact method signatures etc
 // to give you a better idea.
-type service struct {
+type consignmentService struct {
 	repo repository
 }
 
 // CreateConsignment - we created just one method on our service,
 // which is a create method, which takes a context and a request as an
 // argument, these are handled by the gRPC server.
-func (s *service) CreateConsignment(ctx context.Context, req *pb.Consignment) (*pb.Response, error) {
+func (s *consignmentService) CreateConsignment(ctx context.Context, req *pb.Consignment) (*pb.Response, error) {
 
 	// Save our consignment
 	consignment, err := s.repo.Create(req)
@@ -65,7 +65,7 @@ func (s *service) CreateConsignment(ctx context.Context, req *pb.Consignment) (*
 }
 
 // GetConsignments -
-func (s *service) GetConsignments(ctx context.Context, req *pb.GetRequest) (*pb.Response, error) {
+func (s *consignmentService) GetConsignments(ctx context.Context, req *pb.GetRequest) (*pb.Response, error) {
 	consignments := s.repo.GetAll()
 	return &pb.Response{Consignments: consignments}, nil
 }
@@ -74,20 +74,21 @@ func main() {
 
 	repo := &Repository{}
 
-	// Set-up our gRPC server.
-	lis, err := net.Listen("tcp", port)
-	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
-	}
-	s := grpc.NewServer()
+	service :=micro.NewService(
+		micro.Name("shippy.service.consignment"),
+		)
 
+	service.Init()
+
+
+	if err := pb.RegisterShippingServiceHandler(service.Server(), &consignmentService{repo}); err != nil {
+		log.Panic(err)
+	}
 	// Register our service with the gRPC server, this will tie our
 	// implementation into the auto-generated interface code for our
 	// protobuf definition.
-	pb.RegisterShippingServiceServer(s, &service{repo})
 
-	log.Println("Running on port:", port)
-	if err := s.Serve(lis); err != nil {
-		log.Fatalf("failed to serve: %v", err)
+	if err := service.Run(); err != nil {
+		log.Panic(err)
 	}
 }
