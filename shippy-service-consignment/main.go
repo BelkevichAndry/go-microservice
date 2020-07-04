@@ -76,7 +76,7 @@ func main() {
 	// implementation into the auto-generated interface code for our
 	// protobuf definition.
 	pb.RegisterShippingServiceServer(s, &service{repo})
-	pb.Consignment.Re
+
 
 	// Register reflection service on gRPC server.
 	reflection.Register(s)
