@@ -2,6 +2,8 @@ module github.com/BelkevichAndry/go-microservice/shippy-service-consignment
 
 go 1.12
 
+replace google.golang.org/grpc => google.golang.org/grpc v1.26.0
+
 require (
 	cloud.google.com/go/bigquery v1.9.0 // indirect
 	cloud.google.com/go/datastore v1.2.0 // indirect
@@ -20,7 +22,7 @@ require (
 	github.com/ianlancetaylor/demangle v0.0.0-20200703042025-6ce5b4c20f33 // indirect
 	github.com/kr/pretty v0.2.0 // indirect
 	github.com/lyft/protoc-gen-star v0.4.15 // indirect
-	github.com/micro/go-micro/v2 v2.9.1 // indirect
+	github.com/micro/go-micro/v2 v2.9.1
 	github.com/micro/micro/v2 v2.9.2-0.20200703143259-dc109f4b9c20 // indirect
 	github.com/pkg/sftp v1.11.0 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
