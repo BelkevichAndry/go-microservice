@@ -22,4 +22,4 @@ RUN mkdir /app
 WORKDIR /app
 COPY --from=builder /app/shippy-service-vessel .
 
-CMD ["./shippy-service-consignment"]
+CMD ["./shippy-service-vessel"]

@@ -3,10 +3,11 @@ package main
 import (
 	"context"
 	"errors"
-	"github.com/micro/micro/v2/cmd/protoc-gen-micro/plugin/micro"
 	"log"
 
 	pb "github.com/BelkevichAndry/go-microservice/shippy-service-vessel/proto/vessel"
+
+	"github.com/micro/go-micro/v2"
 )
 
 type Repository interface {
