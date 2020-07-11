@@ -9,7 +9,7 @@ import (
 
 type handler struct {
 	repository
-	vesselClient vesselProto.VesselRepository
+	vesselClient vesselProto.VesselService
 }
 
 func (s *handler) CreateConsignment(ctx context.Context, req *pb.Consignment, res *pb.Response) error {
