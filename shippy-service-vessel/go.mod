@@ -8,4 +8,5 @@ require (
 	github.com/golang/protobuf v1.4.2
 	github.com/micro/go-micro/v2 v2.9.1
 	github.com/micro/micro/v2 v2.9.3
+	go.mongodb.org/mongo-driver v1.3.5 // indirect
 )
