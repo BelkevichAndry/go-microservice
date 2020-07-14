@@ -8,7 +8,6 @@ import (
 
 	pb "github.com/BelkevichAndry/go-microservice/shippy-service-consignment/proto/consignment"
 	microclient "github.com/micro/go-micro/client"
-	"github.com/micro/go-micro/cmd"
 	"github.com/micro/go-micro/metadata"
 	"golang.org/x/net/context"
 )
