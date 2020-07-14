@@ -44,7 +44,7 @@ services:
 
   user:
     build:
-      ./shippy-service-user
+      ./shippy-user-service
     ports:
     - 50053:50051
     environment:
@@ -59,4 +59,4 @@ services:
     - 5432:5432
 
   user-cli:
-    build: ./shippy-cli-user
+    build: ./shippy-user-cli
