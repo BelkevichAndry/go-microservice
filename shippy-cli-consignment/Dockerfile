@@ -1,7 +1,7 @@
 
 FROM golang:1.9.0 as builder
 
-RUN go get -u github.com/BelkevichAndry/go-microservice/shippy-cli-consignment
+RUN go get -u github.com/BelkevichAndry/go-microservice/shippy-cli-consignment/
 
 WORKDIR /go/src/github.com/BelkevichAndry/go-microservice/shippy-cli-consignment
 
