@@ -1,5 +1,7 @@
 
-FROM golang:1.9.0 as builder
+FROM golang:1.13 as builder
+
+ENV GO111MODULE=on
 
 RUN go get -u github.com/BelkevichAndry/go-microservice/shippy-cli-consignment
 
